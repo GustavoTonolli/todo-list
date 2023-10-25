@@ -48,8 +48,85 @@ button.btnAdd{
 button.btnAdd:hover {
     background-color: #363f88;
 }
+.todoList{
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    width: 600px;
+    margin: auto;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #363b65;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    align-items: center;
+}
+.item:hover {
+    background-color: #151627;
+}
+.item span {
+    width: 100%;
+    color: #fff;
+    margin-right: 10px;
+    padding: 10px 15px;
+    text-align: start;
+
+}
+.item.completo {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1e1f2e;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.item.completo span {
+    width: 100%;
+    color: #4d506e;
+    text-decoration: line-through;
+    margin-right: 10px;
+    padding: 10px 15px;
+}
+button.btnDel {
+    background: none;
+    color: #4d506e;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+button.btnDel:hover {
+    background: #ff004c;
+    color: #fff;
+
+}
+button.deleteAll {
+    border: 1px solid #ff004c;
+    background: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: #ff004c;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+}
+button.deleteAll:hover {
+    background: #ff004c;
+    color: #fff;
+}
+.icon {
+    max-width: 100%;
+}
 @media screen and (max-width: 900px) {
     form {
+        width: 100%;
+    }
+    .todoList{
         width: 100%;
     }
 }
