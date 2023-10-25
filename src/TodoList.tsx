@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './TodoList.css'
 import icon from './assets/todoList.png'
 
@@ -7,8 +7,13 @@ interface TodoItem{
     isCompleted: boolean
 }
 function TodoList() {
-    const [list, setList] = useState<TodoItem[]>([])
+    const storageList = localStorage.getItem('list')
+    const [list, setList] = useState<TodoItem[]>(storageList ? JSON.parse(storageList) : [])
     const [newItem, setNewItem] = useState('')
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list))
+    }, [list])
 
     function addItem(e:any) {
         e.preventDefault()
@@ -55,7 +60,7 @@ function TodoList() {
                         <img className='icon' src={icon} alt="TodoList" />
                         :
                         list.map((item, index) => (
-                            <div>
+                            <div key={index}>
                                 <section key={index} className={item.isCompleted ? 'item completo' : 'item'}>
                                     <span onClick={() => {clicked(index)}}>{item.text}</span>
                                     <button onClick={() => {deleteTask(index)}} className='btnDel'>Delete</button>
@@ -66,10 +71,7 @@ function TodoList() {
                         
                     }
                     {
-                        list.length < 1
-                        ?
-                        <></>
-                        :
+                        list.length > 0 &&
                         <button onClick={deleteAll} className='deleteAll'>Delete All</button>
                     }
                 </div>
